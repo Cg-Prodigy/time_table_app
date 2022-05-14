@@ -1,2 +1,69 @@
-<EntryPoint>:
-    
+<Manager>:
+    HomeScreen:
+        name:'home screen'
+
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            right_action_items:[['dots-vertical']]
+        MDGridLayout:
+            cols:1
+            rows:3
+            MDLabel:
+                padding:dp(2),dp(10)
+                text:'No of tasks'
+                adaptive_size:True
+            MDRelativeLayout:
+                adaptive_height:True
+                MDRoundFlatIconButton:
+                    id:l_arrow
+                    text:'Prev'
+                    icon:'arrow-left'
+                    pos_hint:{'center_y':.5}
+                    on_release:t_slider.load_previous()
+                MDRoundFlatIconButton:
+                    id:r_arrow
+                    text:'Next'
+                    icon:'arrow-right'
+                    pos_hint:{'right':1,'center_y':.5}
+                    on_release:t_slider.load_next()
+            MDBoxLayout:
+                orientation: 'horizontal'
+                MDGridLayout:
+                    size_hint_x:.6
+                    cols:1
+                    rows:2
+                    md_bg_color:.9,.9,.9,1
+                    MDBoxLayout:
+                        padding:dp(2),dp(10)
+                        adaptive_height:True
+                        Lb:
+                            text:'Day'
+                        Lb:
+                            text:'Month'
+                        Lb:
+                            text:'Year'
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height:True
+                        padding:dp(2),dp(10)
+                        OneLineListItem:
+                            text:'Task Title'
+                        OneLineListItem:
+                            text:'Task Category'
+                        OneLineListItem:
+                            text:'Duration'
+                        MDRelativeLayout:
+                            adaptive_height:True
+                            MDRoundFlatIconButton:
+                                icon:'playlist-edit'
+                                text:'Edit Task'
+                            MDRoundFlatIconButton:
+                                icon:'delete'
+                                text:'Delete Task'
+                                pos_hint:{'right':1}
+        
+                MDRelativeLayout:
+                    TaskSlider:
+                        id:t_slider
