@@ -1,12 +1,18 @@
 <Manager>:
     HomeScreen:
         name:'home screen'
+    CreateTask:
+        name:'create task'
 
 <HomeScreen>:
     MDBoxLayout:
         orientation: 'vertical'
         MDToolbar:
+            title:'My Time Table'
+            halign:'center'
             right_action_items:[['dots-vertical']]
+            md_bg_color:1,1,1,1
+            specific_text_color:.3,.4,.4,1
         MDGridLayout:
             cols:1
             rows:3
@@ -67,3 +73,22 @@
                 MDRelativeLayout:
                     TaskSlider:
                         id:t_slider
+        MDRelativeLayout:
+            size_hint_y:.2
+            MDIconButton:
+                icon:'plus'
+                pos_hint:{'center_x':.5,'center_y':.5} 
+                on_release:
+                    root.parent.current='create task'
+                    root.parent.transition.direction='left'
+
+<CreateTask>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            left_action_items:[['arrow-left',lambda x:root.parent.switch_to_home_screen()]]
+            title:'Create New Task'
+            md_bg_color:1,1,1,1
+            specific_text_color:.3,.4,.4,1
+        MDGridLayout:
+            cols:1
